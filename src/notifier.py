@@ -18,7 +18,7 @@ class EmailNotifier:
     def __init__(self):
         self.api_key = os.environ.get('RESEND_API_KEY')
         self.sender_email = os.environ.get('SENDER_EMAIL')
-        self.recipient_email = os.environ.get('RECIPIENT_EMAIL')
+        raw_recipients = os.environ.get('RECIPIENT_EMAIL')
 
         if not self.api_key:
             raise NotificationError("RESEND_API_KEY must be set")
@@ -26,8 +26,15 @@ class EmailNotifier:
         if not self.sender_email:
             raise NotificationError("SENDER_EMAIL must be set (your verified Resend domain email)")
 
-        if not self.recipient_email:
+        if not raw_recipients:
             raise NotificationError("RECIPIENT_EMAIL must be set")
+        self.recipient_emails = [
+            email.strip()
+            for email in raw_recipients.replace(';', ',').split(',')
+            if email.strip()
+        ]
+        if not self.recipient_emails:
+            raise NotificationError("RECIPIENT_EMAIL must include at least one address")
 
         resend.api_key = self.api_key
 
@@ -48,13 +55,13 @@ class EmailNotifier:
         try:
             params = {
                 "from": self.sender_email,
-                "to": [self.recipient_email],
+                "to": self.recipient_emails,
                 "subject": subject,
                 "text": message,
             }
 
             email = resend.Emails.send(params)
-            logger.info(f"Email sent to {self.recipient_email} (id: {email['id']})")
+            logger.info(f"Email sent to {', '.join(self.recipient_emails)} (id: {email['id']})")
             return True
 
         except Exception as e:

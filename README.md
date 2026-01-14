@@ -27,7 +27,7 @@ WYZE_KEY_ID=your_key_id
 WYZE_API_KEY=your_api_key
 RESEND_API_KEY=re_your_api_key
 SENDER_EMAIL=alerts@yourdomain.com
-RECIPIENT_EMAIL=your_email@example.com
+RECIPIENT_EMAIL=your_email@example.com,other@example.com
 ```
 
 ### 3. Get Wyze API Keys (Required)
