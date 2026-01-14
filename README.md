@@ -6,7 +6,7 @@ Monitors your Wyze WiFi doorbell battery and sends email alerts when the battery
 
 - Checks Wyze doorbell battery level via the unofficial [wyze-sdk](https://github.com/shauntarves/wyze-sdk)
 - Sends email alerts via [Resend](https://resend.com)
-- Runs daily on GitHub Actions
+- Runs weekly on GitHub Actions
 - Manual testing from terminal
 
 ## Setup

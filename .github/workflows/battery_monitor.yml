@@ -1,9 +1,9 @@
 name: Wyze Doorbell Battery Monitor
 
 on:
-  # Daily schedule at 9 AM UTC
+  # Weekly schedule at 9 AM UTC on Mondays
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 9 * * 1'
 
   # Allow manual triggering for testing
   workflow_dispatch:
