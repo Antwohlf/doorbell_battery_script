@@ -2,6 +2,10 @@
 
 import os
 import logging
+import urllib3
+
+# Disable SSL verification warnings for GitHub Actions
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from wyze_sdk import Client
 from wyze_sdk.errors import WyzeApiError, WyzeClientConfigurationError
