@@ -19,6 +19,10 @@ import sys
 import logging
 from datetime import datetime
 
+from src.ssl_fix import disable_wyze_ssl_verification
+
+disable_wyze_ssl_verification()
+
 from src.config import Config
 from src.wyze_client import create_authenticated_client, AuthenticationError
 from src.doorbell_finder import find_doorbell, explore_devices, get_battery_level

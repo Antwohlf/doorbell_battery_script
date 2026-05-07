@@ -2,14 +2,6 @@
 
 import os
 import logging
-import ssl
-import urllib3
-
-# Disable SSL verification warnings
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Disable SSL certificate verification for GitHub Actions environment
-ssl._create_default_https_context = ssl._create_unverified_context
 
 from wyze_sdk import Client
 from wyze_sdk.errors import WyzeApiError, WyzeClientConfigurationError
